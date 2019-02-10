@@ -1,0 +1,42 @@
+﻿<Window x:Class="WpfCaliburn.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCaliburn.Views"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:cal="http://www.caliburnproject.org"
+        mc:Ignorable="d"
+        Title="ShellView" Height="450" Width="800">
+    <StackPanel>
+        <TextBox x:Name="TitleX"></TextBox>
+        <TextBlock Text="{Binding Path=TitleX, Mode=OneWay}"/>
+        <Button x:Name="AddTodo" Content="Add"/>
+        <TextBlock Text="{Binding Path=SelectedTodo, Mode=OneWay}" />
+
+        <ListView ItemsSource="{Binding Path=Todos}" SelectedItem="{Binding Path=SelectedTodo}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="3"
+                            Padding="5"
+                            BorderBrush="Black"
+                            BorderThickness="1.5"
+                            CornerRadius="5">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock FontWeight="Bold" Text="{Binding Title}" />
+                            <TextBlock Text="{Binding CreatedAt}" />
+                            <Button Content="X"  cal:Message.Attach="[Click] = [RemoveTodo($datacontext)]">
+                                <!--
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="RemoveTodo"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>-->
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListView>
+    </StackPanel>
+</Window>
