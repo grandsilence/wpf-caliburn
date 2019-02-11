@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Windows;
+﻿using System.Collections.ObjectModel;
 using Caliburn.Micro;
 using WpfCaliburn.Models;
 
@@ -12,6 +10,7 @@ namespace WpfCaliburn.ViewModels
 
         public ObservableCollection<TodoTask> Todos { get; set; }
         public TodoTask SelectedTodo { get; set; }
+
 
         public ShellViewModel()
         {
@@ -31,6 +30,7 @@ namespace WpfCaliburn.ViewModels
             Todos.Add(new TodoTask {
                 Title = TitleX
             });
+            
         }
 
         public void RemoveTodo(TodoTask todo)

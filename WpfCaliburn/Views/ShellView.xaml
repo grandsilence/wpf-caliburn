@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
+        xmlns:local="clr-namespace:WpfCaliburn"
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:m="clr-namespace:WpfCaliburn.Models"
         xmlns:vm="clr-namespace:WpfCaliburn.ViewModels"
