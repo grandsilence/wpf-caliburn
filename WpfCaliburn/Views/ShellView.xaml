@@ -3,40 +3,44 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfCaliburn.Views"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="ShellView" Height="450" Width="800">
-    <StackPanel>
-        <TextBox x:Name="TitleX"></TextBox>
-        <TextBlock Text="{Binding Path=TitleX, Mode=OneWay}"/>
-        <Button x:Name="AddTodo" Content="Add"/>
-        <TextBlock Text="{Binding Path=SelectedTodo, Mode=OneWay}" />
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:m="clr-namespace:WpfCaliburn.Models"
+        xmlns:vm="clr-namespace:WpfCaliburn.ViewModels"
+        xmlns:v="clr-namespace:WpfCaliburn.Views"
+        d:DataContext="{d:DesignInstance Type=vm:ShellViewModel, IsDesignTimeCreatable=True}"
 
-        <ListView ItemsSource="{Binding Path=Todos}" SelectedItem="{Binding Path=SelectedTodo}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border Margin="3"
-                            Padding="5"
-                            BorderBrush="Black"
-                            BorderThickness="1.5"
-                            CornerRadius="5">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock FontWeight="Bold" Text="{Binding Title}" />
-                            <TextBlock Text="{Binding CreatedAt}" />
-                            <Button Content="X"  cal:Message.Attach="[Click] = [RemoveTodo($datacontext)]">
-                                <!--
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="Click">
-                                        <cal:ActionMessage MethodName="RemoveTodo"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>-->
-                            </Button>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListView>
-    </StackPanel>
+        Title="TODO List. Based on Caliburn.Micro &amp; Fody.PropertyChanged2" Width="800" Height="450">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBox x:Name="TitleX"></TextBox>
+            <TextBlock Text="{Binding Path=TitleX, Mode=OneWay}" />
+            <Button x:Name="AddTodo" Content="Add"/>
+            <TextBlock Text="{Binding Path=SelectedTodo, Mode=OneWay}" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" CanContentScroll="True" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+            <ListView ItemsSource="{Binding Path=Todos}" SelectedItem="{Binding Path=SelectedTodo}" Height="auto">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="m:TodoTask">
+                        <Border Margin="3" Padding="5" BorderBrush="Black" BorderThickness="1.5" CornerRadius="5">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock FontWeight="Bold" Text="{Binding Title}" />
+                                <TextBlock Text="{Binding CreatedAt}" />
+                                <Button Content="X" cal:Message.Attach="[Click] = [RemoveTodo($datacontext)]"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+
+    </Grid>
 </Window>
