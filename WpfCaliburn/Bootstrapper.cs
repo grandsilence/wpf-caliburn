@@ -13,7 +13,10 @@ namespace WpfCaliburn
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<ShellViewModel>();
+            // TODO: Check if authenticated 
+            //DisplayRootViewFor<ShellViewModel>();
+            DisplayRootViewFor<LoginViewModel>();
+
             base.OnStartup(sender, e);
         }
     }

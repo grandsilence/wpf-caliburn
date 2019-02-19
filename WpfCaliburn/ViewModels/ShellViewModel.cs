@@ -28,7 +28,7 @@ namespace WpfCaliburn.ViewModels
         public void AddTodo(string titleX)
         {
             Todos.Add(new TodoTask {
-                Title = TitleX
+                Title = titleX
             });
             
         }
