@@ -41,6 +41,7 @@ namespace WpfCaliburn.Toramp
             resp = await Http.SendAsync(req);
             resp.EnsureSuccessStatusCode();
 
+            // TODO: validation
             html = await resp.Content.ReadAsStringAsync();
             
             // TODO: check no redirection
