@@ -22,7 +22,7 @@ namespace WpfCaliburn.Toramp
                 UseCookies = true,
                 SslProtocols = SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12,
                 #if DEBUG
-                Proxy = new WebProxy("http://127.0.0.1:8887"),
+                Proxy = new WebProxy("http://127.0.0.1:8888"),
                 #endif
             };
 
